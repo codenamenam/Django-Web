@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Hello</title>
+        <script>
+
+            document.addEventListener("DOMContentLoaded", function(){
+                document.querySelector('form').onsubmit = function(){ //form이라는 element를 가져옴
+                    const name = document.querySelector('#name').value //id가 name인 element를 가져옴
+                    alert(`Hello, ${name}!`);
+                };
+            });          
+
+        </script>
+    </head>
+    <body>
+        <h1>Hello!</h1>
+        <form>
+            <input autofocus id="name" placeholder="Name" type = "text">
+            <input type="submit">
+        </form>
+    </body>
+</html>

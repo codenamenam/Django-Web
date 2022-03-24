@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Currency Exchange</title>
+        <script>
+            document.addEventListener('DOMContentLoaded', function(){
+
+                document.querySelector('form').onsubmit = function(){
+                
+                fetch('http://api.exchangeratesapi.io/v1/latest?access_key=6c287d3e9e3b1e34cacc8392b2dd0746&format=1')
+                .then(response => response.json()) //json 형식으로 만듦
+                .then(data => { //data에 저장
+                
+                const currency = document.querySelector('#currency').value;
+                const rate = data.rates[currency];
+                if(rate !== undefined){
+                    document.querySelector('body').innerHTML = `1 EUR is equal to ${rate.toFixed(3)} ${currency}.`;
+                } else {
+                    document.querySelector('#result').innerHTML = "Invalid currency";
+                }
+                
+                })  
+
+                    return false;
+                };
+            })
+            .catch(error => {
+                console.log('Error', error);
+            });
+        </script>
+    </head>
+    <body>
+        <form>
+            <input id="currency" placeholder="Currency" type="text">
+            <input type="submit" value="Convert">
+        </form>
+        <div id = "result">
+
+        </div>
+    </body>
+</html>
